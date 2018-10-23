@@ -1,45 +1,28 @@
-function getInput() {
-  var inputOne = parseInt($("input#inputOne").val());
-  var inputTwo = parseInt($("input#inputTwo").val());
+$(document).ready(function(){
+  $("form#countForm").submit(function(event) {
+    var countToNum = parseInt($("input#inputUser1").val());
+    var countByNum = parseInt($("input#inputUser2").val());
 
-  verifyInput(inputOne, inputTwo);
-};
+    var outputArray = [];
 
-function verifyInput(inputOne, inputTwo) {
-  var invalidWarning = ["Invalid Input"]
-  if (!inputOne || !inputTwo) {
-    display(invalidWarning);
-  } else if (inputOne === NaN || inputTwo === NaN ) {
-    display(invalidWarning);
-  } else if (inputOne < inputTwo) {
-    display(invalidWarning);
-  } else {
-    count(inputOne, inputTwo);
-  }
-};
 
-function count(valueOne, valueTwo) {
-  var countPoints = [];
-  for (var count = valueTwo; count <= valueOne; count += valueTwo) {
-  countPoints.push(count);
+for (var index = countByNum; index <= countToNum; index += countByNum) {
+  outputArray.push(index);
+  console.log(outputArray);
+  //debugger;
+  // console.log("index=" + index);
+  // console.log("countToNum=" + countToNum);
+  // console.log("countByNum=" + countByNum);
+
   }
 
-  console.log(countPoints);
-  display(countPoints);
-  return countPoints;
-};
+  $("span#outputValueHere").text(outputArray);
 
-function display(dataToDisplay) {
-  for (var index = 0; index < dataToDisplay.length; index += 1) {
-    $("ul#display").append("<li class='output'>" + dataToDisplay[index] + "</li>");
-  }
-};
 
-$(document).ready(function() {
-  $("form#counterInput").submit(function(event) {
-    event.preventDefault();
+  event.preventDefault();
+  }); /*This is the end of the button submit event.*/
 
-    $("li.output").remove();
-    getInput();
-  });
-});
+
+
+
+}); /*This is the end brace*/
